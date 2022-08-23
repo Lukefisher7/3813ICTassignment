@@ -10,16 +10,15 @@ export class LoginComponent implements OnInit {
 
   userName = ""
   password = ""
-  userlist = [{"userName": "123", "password": "123"}]
+  userlist = [{"userName": "tester", "password": "123"}, {"userName": "tester2", "password": "1234"}, {"userName": "tester3", "password": "1235"}]
   constructor(private router:Router) { }
 
   check(){
     let found = this.userlist.some(e=>(e.userName == this.userName && e.password == this.password));
     if(found){
-      alert("valid")
       this.router.navigate(['/','account'])
     } else{
-      alert("invalid user")
+      alert("incorrect username or password, please try again")
     }
   }
 
