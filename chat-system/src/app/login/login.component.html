@@ -1,26 +1,22 @@
-<!DOCTYPE html>    
-<html>    
-<head>    
-    <title>Login Form</title>    
-    <link rel="stylesheet" type="text/css" href="login.component.css">    
-</head>    
-<body>    
-    <h2>Chat System Login Page</h2><br>    
-    <div class="login">    
-    <form id="login" method="get" action="login.php">    
-        <label><b>Username     
-        </b>    
-        </label>    
-        <input type ="text" [(ngModel)]= "userName" name = "username">   
-        <br><br>    
-        <label><b>Password     
-        </b>    
-        </label>    
-        <input type ="text"[(ngModel)]= "password" name = "password">    
-        <br><br>    
-        <button (click)="check()">Submit</button>       
-        <br><br>       
-    </form>     
-</div>    
-</body>    
-</html> 
+<h2>Chat System Login Page</h2>
+<body>
+<form
+  action="http://localhost:3000/api/auth"
+  method="post"
+  (ngSubmit)="submit()"
+><label><b>Username     
+</b>    
+</label>
+  <input type="text" [(ngModel)]="username" name="username" />
+  <br><br>
+  <label><b>Password     
+</b>    
+</label> 
+  <input type="text" [(ngModel)]="password" name="password" />
+  <br><br>
+  <input type="submit" value="submit" />
+  <br />
+
+  <!-- <p *ngIf="loggedIn()" [ngClass]="cardClasses()">Error authenticating</p> -->
+</form>
+</body>

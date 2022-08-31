@@ -1,27 +1,21 @@
-body  
-{  
-    margin: 0;  
-    padding: 0;  
-    background-color:#6abadeba;  
-    font-family: 'Arial';  
-}  
-.login{  
+body{  
         width: 382px;  
         overflow: hidden;  
         margin: auto;  
         margin: 20 0 0 450px;  
         padding: 80px;  
-        background: #23463f;  
+        background: #c29d4f;  
         border-radius: 15px ;  
           
 }  
 h2{  
     text-align: center;  
-    color: #277582;  
+    color: black;  
     padding: 20px;  
+    background-color: coral;
 }  
 label{  
-    color: #08ffd1;  
+    color: #000000;  
     font-size: 17px;  
 }  
 #Uname{  
