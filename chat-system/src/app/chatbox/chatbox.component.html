@@ -1,0 +1,9 @@
+<div *ngFor= "let message of messages" > 
+
+    <div class="container">
+        
+        <p>{{message}}</p>
+        <span class="time-right">11:00</span>
+    </div>
+</div>
+<input type = 'text' [(ngModel)] = 'currentMessage'/><button type = 'submit' (click)="SendMessage()">Send Message</button>

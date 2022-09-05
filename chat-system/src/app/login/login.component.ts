@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { findIndex } from 'rxjs';
@@ -40,7 +39,7 @@ export class LoginComponent implements OnInit {
         password: this.password,
       }),
       method: 'POST',
-      headers: { 'content-type': 'application/json' }, // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+      headers: { 'content-type': 'application/json' }, 
     }) // fetch
       .then((response) =>
         response
@@ -58,9 +57,10 @@ export class LoginComponent implements OnInit {
               );
               console.log('hello', this.fetchedData);
               this.loggedIn();
-              this.router.navigate(['/profile']);
+              this.router.navigate(['/account']);
               return true;
             } else {
+              alert("username or password incorrect, please try again");
               this.authenticated = false;
               return false;
             }
