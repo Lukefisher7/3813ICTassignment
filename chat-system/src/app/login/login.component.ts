@@ -16,11 +16,11 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute) {}
   loggedIn() {
-    if (sessionStorage.getItem('user_data') == null) {
+    if (localStorage.getItem('user_data') == null) {
       return true;
     }
-    console.log(sessionStorage.getItem('user_data'));
-    var data = sessionStorage.getItem('user_data') || '{}';
+    console.log(localStorage.getItem('user_data'));
+    var data = localStorage.getItem('user_data') || '{}';
     var data_JSON = JSON.parse(data);
     return data_JSON[0].valid;
   }
@@ -49,9 +49,9 @@ export class LoginComponent implements OnInit {
             if (data[0].valid) {
               // check if user is authenticated
               console.log('Authenticated');
-              sessionStorage.clear(); // clear session storage for purpose of the application.
+              localStorage.clear(); // clear session storage for purpose of the application.
               this.authenticated = true;
-              sessionStorage.setItem(
+              localStorage.setItem(
                 'user_data',
                 JSON.stringify(this.fetchedData)
               );

@@ -1,0 +1,28 @@
+<div class="list-group list-group-light">
+  <a
+    href="#"
+    class="list-group-item list-group-item-action px-3 border-0 active"
+    aria-current="true"
+    >Group List</a
+  >
+  <a
+    href="#"
+    class="list-group-item list-group-item-action px-3 border-0"
+    (click) = "groupLink()">Group 1</a>
+  <a
+    href="#"
+    class="list-group-item list-group-item-action px-3 border-0"
+    routerLink = "/group" routerlinkActive = 'active'>Group 2
+    </a>
+  <a
+    href="#"
+    class="list-group-item list-group-item-action px-3 border-0"
+    (click) = "groupLink()">Group 3
+    </a>
+  <a
+  href="#"
+  class="list-group-item list-group-item-action px-3 border-0"
+  (click) = "groupLink()">Group 4
+</a>
+<router-outlet></router-outlet>
+</div>

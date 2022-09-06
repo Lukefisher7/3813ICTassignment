@@ -5,7 +5,7 @@ module.exports = function(req, res) {
     var p = req.body.pwd;
     c = u + p;
     console.log(c);
-    fs.readFile('./data/users.json', 'utf8', function(err, data) {
+    fs.readFile('./server/data/users.json', 'utf8', function(err, data) {
         // the above path is with respect to where we run server.js
         if (err) throw err;
         let userArray = JSON.parse(data);
@@ -17,7 +17,7 @@ module.exports = function(req, res) {
                 "ok": false
             });
         } else {
-            fs.readFile('./data/extendedUsers.json', 'utf8', function(err, data) {
+            fs.readFile('./server/data/extendedUsers.json', 'utf8', function(err, data) {
                 // the above path is with respect to where we run server.js
                 if (err) throw err;
                 let extendedUserArray = JSON.parse(data);

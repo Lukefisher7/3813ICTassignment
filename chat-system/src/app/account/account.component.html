@@ -14,16 +14,41 @@
 
 <main>
 <p>Main home page to select chat room</p>
+<p>needed: a list of groups 
+    list of rooms for each group
+    list of users in each group and room
+</p>
 </main>
+<div *ngIf="roleCheck() == 'Super Admin'">
+    <h1>Super Admin</h1>
+    <p>
+        
+        create users with group admin role, remove all users, upgrade anyone to super admin, create groups, create channels, create or invite users, remove groups, rooms and users from channels
 
+    </p>
+</div>
+<div *ngIf="roleCheck() == 'Group Admin'">
+    <h1>Group Admin</h1>
+       <p> 
+        create groups, create channels, create or invite users, remove groups, rooms and users from channel
+    </p>
+</div>
+<div *ngIf="roleCheck() == 'Group Assis'">
+     <h1>Group Assis</h1>
+     <p>
+        
+        can add or remove users in the group from channels within
+        the group. create channels within the group.
+    </p>
+</div>
 <!--Main layout-->
-
+<app-group-list></app-group-list>
 
 
 <!--Footer-->
-
-<footer>
-<p> footer</p>
-</footer>
-
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+      <button type="type" value="submit" (click) = "logOut()">Logout</button>
+    </div>
+  </footer>
 <!--Footer-->

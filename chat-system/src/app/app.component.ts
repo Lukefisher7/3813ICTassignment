@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,10 @@ import { Component } from '@angular/core';
 
 })
 export class AppComponent {
-  title = 'chat-system';
+ 
   
   ngOnInit(): void {
-    sessionStorage.setItem('user_data', 'your data');
+    localStorage.setItem('user_data', 'your_data');
   }
 }
 

@@ -4,6 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const http = require("http").Server(app);
 const https = require("https");
+const url = require('url');
 const fs = require("fs");
 const PORT = 3000;
 
@@ -11,6 +12,14 @@ var users = [
   {
     username: "John",
     password: "1234",
+    role: "Group Admin",
+    valid: false,
+  },
+
+  {
+    username: "Peter",
+    password: "1884",
+    role: "Group Admin",
     valid: false,
   },
 ];
@@ -33,6 +42,7 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
+
 app.post("/api/auth", (req, res) => {
   //console.log(req.body.username); // communication
 
@@ -46,3 +56,5 @@ app.post("/api/auth", (req, res) => {
     users[idx].valid = false; //reset data to false.
   } else if (!user_data) res.send(users); // debugging
 });
+
+

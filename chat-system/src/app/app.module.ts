@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AccountComponent } from './account/account.component';
 import { ChatboxComponent } from './chatbox/chatbox.component';
+import { GroupListComponent } from './group-list/group-list.component';
+import { GroupComponent } from './group/group.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { ChatboxComponent } from './chatbox/chatbox.component';
     AppComponent,
     LoginComponent,
     AccountComponent,
-    ChatboxComponent
+    ChatboxComponent,
+    GroupListComponent,
+    GroupComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +26,6 @@ import { ChatboxComponent } from './chatbox/chatbox.component';
     FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, LoginComponent, AccountComponent, GroupListComponent]
 })
 export class AppModule { }

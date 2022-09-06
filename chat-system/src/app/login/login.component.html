@@ -1,6 +1,8 @@
-<h2>Chat System Login Page</h2>
-<body>
+<h2 class="h3 mb-3 fw-normal">Chat System Login Page</h2>
+<body class = "text-centre">
+<main class = "form-signin w-100 m-auto">
 <form
+
   action="http://localhost:3000/api/auth"
   method="post"
   (ngSubmit)="submit()"
@@ -15,7 +17,6 @@
   <input type="text" [(ngModel)]="password" name="password" />
   <br><br>
   <input type="submit" value="submit"/>
-
 </form>
+</main>
 </body>
-

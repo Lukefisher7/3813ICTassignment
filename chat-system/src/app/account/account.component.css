@@ -1,13 +1,13 @@
 h2{  
     text-align: left;  
-    color: #277582;  
+    color: #000000;  
     padding: 20px;  
-    background-color: rgb(177, 177, 255);
+    background-color: rgb(73, 73, 236);
 } 
 
 h1{  
     text-align: center;  
-    color: red;  
+    color: rgb(0, 0, 0);  
     padding: 20px;  
 } 
 
