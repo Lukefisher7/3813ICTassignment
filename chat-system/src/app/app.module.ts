@@ -10,6 +10,7 @@ import { ChatboxComponent } from './chatbox/chatbox.component';
 import { GroupListComponent } from './group-list/group-list.component';
 import { GroupComponent } from './group/group.component';
 import { RolePermissionsService } from './role-permissions.service';
+import { UserlistComponent } from './userlist/userlist.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RolePermissionsService } from './role-permissions.service';
     AccountComponent,
     ChatboxComponent,
     GroupListComponent,
-    GroupComponent
+    GroupComponent,
+    UserlistComponent
   ],
   imports: [
     BrowserModule,

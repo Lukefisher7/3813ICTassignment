@@ -2,6 +2,7 @@ import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RolePermissionsService } from '../role-permissions.service';
+import{v4 as uuid} from 'uuid';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -9,8 +10,11 @@ import { RolePermissionsService } from '../role-permissions.service';
 })
 export class AccountComponent implements OnInit {
 accrole: any;
+Nusername = '';
+Npassword = '';
+username = '';
   
-  constructor(private router: Router, private route: ActivatedRoute, public rolePerms: RolePermissionsService){};
+  constructor(private router: Router, private route: ActivatedRoute, public rolePerms: RolePermissionsService, ){};
   title = 'chat-system';
   logOut(){
     localStorage.clear();
@@ -48,7 +52,35 @@ accrole: any;
      console.log(this.accrole);
      return this.accrole;
      }
+     if (user == 'BaseUser'){
+      this.accrole = this.rolePerms.BaseUser;
+     console.log(this.accrole);
+     return this.accrole;
+     }
   }
+
+  createUser(newuser: string, pwd: string){
+    var data: any= localStorage.getItem('user_data');
+    var existingEntries = JSON.parse(data);
+    console.log(existingEntries);
+    var info: any = {id: uuid(), username: newuser, password: pwd, role: 'BaseUser', valid : false}
+    existingEntries.push(info)
+    var newdata: any = JSON.stringify(existingEntries);
+    localStorage.setItem('user_data', newdata);
+};
+
+  deleteUser(removeduser: string){
+    var data: any= localStorage.getItem('user_data');
+    var existingEntries = JSON.parse(data);
+    console.log(existingEntries.findIndex((removeduser: any) => {
+      return removeduser.username == this.username;
+    }));
+    existingEntries.splice(existingEntries.findIndex(this.username), 1);
+    console.log(existingEntries);
+    var newdata: any = JSON.stringify(existingEntries);
+    localStorage.setItem('user_data', newdata);
+    console.log(newdata);
+  };
 
 
         

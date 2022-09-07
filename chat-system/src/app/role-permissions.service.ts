@@ -32,7 +32,7 @@ GroupAdmin = {
   };
   GroupAssis = {
     createUser: false,
-    removeUser: true,
+    removeUser: false,
     createGroup: false,
     deleteGroup: false,
     updateUserGroupPerms: false,
@@ -43,6 +43,19 @@ GroupAdmin = {
     setGroupAdminRole: false,
     setSuperAdminRole: false
     };
-
+    BaseUser = {
+      createUser: false,
+      removeUser: false,
+      createGroup: false,
+      deleteGroup: false,
+      updateUserGroupPerms: false,
+      createChannel: false,
+      deleteChannel: false,
+      updateUserChannelPerms: false,
+      setGroupAssRole: false,
+      setGroupAdminRole: false,
+      setSuperAdminRole: false
+      };
+  
   constructor() { }
 }

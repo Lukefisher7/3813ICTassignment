@@ -1,4 +1,5 @@
 <link rel="stylesheet" rel="noopener" target="_blank" href="account.component.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!--Main Navigation-->
 
 <header>
@@ -46,7 +47,26 @@
 <div *ngIf="roleSet().createGroup == true"><button>create group</button></div>
 <!--Main layout-->
 <app-group-list></app-group-list>
- 
+<div *ngIf="roleSet().removeUser == true"><app-userlist></app-userlist>
+    <input type="text" [(ngModel)]="username" name="username" />
+    <button type="type" (click) = "deleteUser(username)">remove user</button></div>
+
+
+
+            <div class="modal-header">
+              <h5 class="modal-title">Create User</h5>
+            </div>
+            <div class="modal-body">
+<div *ngIf="roleSet().createUser == true">
+    
+    <input type="text" [(ngModel)]="Nusername" name="username" />
+    <input type="text" [(ngModel)]="Npassword" name="pwd" />  
+</div>
+</div>
+<div class="modal-footer">
+<button type="type" class="btn btn-primary" (click) = "createUser(Nusername, Npassword)">submit</button> 
+</div>
+
 
 <!--Footer-->
 <footer class="footer mt-auto py-3 bg-light">

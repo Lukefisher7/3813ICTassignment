@@ -1,9 +1,19 @@
 [{
+    "id": 1,
     "username": "John",
-    "password": "666666"
+    "password": "666666",
+    "role": "Group Assis"
 },
 {
+    "id": 2,
     "username": "Peter",
-    "password": "55555"
+    "password": "55555",
+    "role": "Group Admin"
+},
+{
+    "id": 3,
+    "username": "Super",
+    "password": "111",
+    "role": "Super Admin"
 }
 ]
