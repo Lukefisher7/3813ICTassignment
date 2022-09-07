@@ -26,6 +26,7 @@
         create users with group admin role, remove all users, upgrade anyone to super admin, create groups, create channels, create or invite users, remove groups, rooms and users from channels
 
     </p>
+    
 </div>
 <div *ngIf="roleCheck() == 'Group Admin'">
     <h1>Group Admin</h1>
@@ -41,9 +42,11 @@
         the group. create channels within the group.
     </p>
 </div>
+
+<div *ngIf="roleSet().createGroup == true"><button>create group</button></div>
 <!--Main layout-->
 <app-group-list></app-group-list>
-
+ 
 
 <!--Footer-->
 <footer class="footer mt-auto py-3 bg-light">

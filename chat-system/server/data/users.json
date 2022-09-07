@@ -1,5 +1,0 @@
-{
-    "Users":[
-      {"username":"John","password":"1234", "role": "Super Admin", "valid": false }
-    ]
-}

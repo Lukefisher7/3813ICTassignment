@@ -8,21 +8,21 @@
   <a
     href="#"
     class="list-group-item list-group-item-action px-3 border-0"
-    (click) = "groupLink()">Group 1</a>
+    routerLink = "/group">Group 1</a><router-outlet></router-outlet>
   <a
     href="#"
     class="list-group-item list-group-item-action px-3 border-0"
-    routerLink = "/group" routerlinkActive = 'active'>Group 2
-    </a>
+    routerLink = "/group">Group 2
+    </a><router-outlet></router-outlet>
   <a
     href="#"
     class="list-group-item list-group-item-action px-3 border-0"
-    (click) = "groupLink()">Group 3
-    </a>
+    routerLink = "/group">Group 3
+    </a><router-outlet></router-outlet>
   <a
   href="#"
   class="list-group-item list-group-item-action px-3 border-0"
-  (click) = "groupLink()">Group 4
-</a>
-<router-outlet></router-outlet>
+  routerLink = "/group">Group 4
+</a><router-outlet></router-outlet>
+
 </div>

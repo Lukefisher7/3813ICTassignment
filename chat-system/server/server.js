@@ -8,11 +8,15 @@ const url = require('url');
 const fs = require("fs");
 const PORT = 3000;
 
-var users = [
+const userfile = "./data/user.json";
+const users = require(userfile);
+
+
+/*[
   {
     username: "John",
     password: "1234",
-    role: "Group Admin",
+    role: "Super Admin",
     valid: false,
   },
 
@@ -23,7 +27,7 @@ var users = [
     valid: false,
   },
 ];
-
+*/
 app.use(cors());
 
 // parse application/x-www-form-urlencoded

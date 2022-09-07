@@ -9,7 +9,7 @@ import { AccountComponent } from './account/account.component';
 import { ChatboxComponent } from './chatbox/chatbox.component';
 import { GroupListComponent } from './group-list/group-list.component';
 import { GroupComponent } from './group/group.component';
-
+import { RolePermissionsService } from './role-permissions.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { GroupComponent } from './group/group.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [RolePermissionsService],
   bootstrap: [AppComponent, LoginComponent, AccountComponent, GroupListComponent]
 })
 export class AppModule { }

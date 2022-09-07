@@ -46,25 +46,26 @@ export class LoginComponent implements OnInit {
           .json()
           .then((data) => (this.fetchedData = data))
           .then((data) => {
-            if (data[0].valid) {
+            console.log(data);
+            for(let i =0; i< data.length; i++){
+            if (data[i].valid) {
               // check if user is authenticated
               console.log('Authenticated');
-              localStorage.clear(); // clear session storage for purpose of the application.
+              localStorage.clear();
               this.authenticated = true;
               localStorage.setItem(
                 'user_data',
                 JSON.stringify(this.fetchedData)
               );
-              console.log('hello', this.fetchedData);
+              console.log('working', this.fetchedData);
               this.loggedIn();
               this.router.navigate(['/account']);
               return true;
-            } else {
-              alert("username or password incorrect, please try again");
-              this.authenticated = false;
-              return false;
-            }
-          })
+            } 
+          }
+          this.authenticated = false;
+          return false;
+        })
       );
 
     // https://caniuse.com/?search=fetch f*k IE users

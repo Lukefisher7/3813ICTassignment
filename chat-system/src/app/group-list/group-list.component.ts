@@ -8,10 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class GroupListComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute) {};
-    groupLink(){
-      this.router.navigate(['/group']);
-    }
-
+      
+  
   ngOnInit(): void {
   }
 
