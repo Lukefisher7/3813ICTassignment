@@ -1,9 +1,9 @@
 [{
-    "username": "k.su@griffith.edu.au",
-    "pwd": "666666"
+    "username": "John",
+    "password": "666666"
 },
 {
-    "username": "kailepku@gmail.com",
-    "pwd": "55555"
+    "username": "Peter",
+    "password": "55555"
 }
 ]

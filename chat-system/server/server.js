@@ -11,23 +11,6 @@ const PORT = 3000;
 const userfile = "./data/user.json";
 const users = require(userfile);
 
-
-/*[
-  {
-    username: "John",
-    password: "1234",
-    role: "Super Admin",
-    valid: false,
-  },
-
-  {
-    username: "Peter",
-    password: "1884",
-    role: "Group Admin",
-    valid: false,
-  },
-];
-*/
 app.use(cors());
 
 // parse application/x-www-form-urlencoded
@@ -50,7 +33,7 @@ app.get("/", (req, res) => {
 app.post("/api/auth", (req, res) => {
   //console.log(req.body.username); // communication
 
-  const user_data = users.find((user) => user.username == req.body.username); // check for authentication, will return undefined if not found, .find uses testing function.
+  const user_data = users.find((user) => user.username == req.body.username && user.password == req.body.password); // check for authentication, will return undefined if not found, .find uses testing function.
   idx = users.findIndex((user) => user.username == req.body.username); // index that this was found.
 
   if (user_data) {

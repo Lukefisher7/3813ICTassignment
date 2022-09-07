@@ -39,12 +39,14 @@ accrole: any;
      return this.accrole;
      }
      if (user == 'Group Admin'){
-      this.rolePerms.GroupAdmin;
-      console.log(this.rolePerms.GroupAdmin);
+      this.accrole = this.rolePerms.GroupAdmin;
+     console.log(this.accrole);
+     return this.accrole;
      }
      if (user == 'Group Assis'){
-      this.rolePerms.GroupAssis;
-      console.log(this.rolePerms.GroupAssis);
+      this.accrole = this.rolePerms.GroupAssis;
+     console.log(this.accrole);
+     return this.accrole;
      }
   }
 
