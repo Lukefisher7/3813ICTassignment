@@ -7,7 +7,13 @@ import { GroupListComponent } from "./group-list/group-list.component";
 import { GroupComponent } from './group/group.component';
 import { UserlistComponent } from './userlist/userlist.component';
 
-const routes: Routes = [{path: "login", component:LoginComponent},{path: "account", component:AccountComponent}, {path: "chatbox", component:ChatboxComponent} , {path: "group-list", component:GroupListComponent}, {path: "group", component:GroupComponent}, {path: "user-list", component: UserlistComponent}];
+const routes: Routes = [
+{path: "login", component:LoginComponent},
+{path: "account", component:AccountComponent}, 
+{path: "chatbox", component:ChatboxComponent} , 
+{path: "group-list", component:GroupListComponent}, 
+{path: "group", component:GroupComponent}, 
+{path: "user-list", component: UserlistComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

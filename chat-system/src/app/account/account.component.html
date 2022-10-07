@@ -15,45 +15,35 @@
 
 <main>
 <p>Main home page to select chat room</p>
-<p>needed: a list of groups 
-    list of rooms for each group
-    list of users in each group and room
-</p>
 </main>
 <div *ngIf="roleCheck() == 'Super Admin'">
-    <h1>Super Admin</h1>
-    <p>
-        
-        create users with group admin role, remove all users, upgrade anyone to super admin, create groups, create channels, create or invite users, remove groups, rooms and users from channels
-
-    </p>
-    
+    <h1>Super Admin</h1> 
 </div>
 <div *ngIf="roleCheck() == 'Group Admin'">
-    <h1>Group Admin</h1>
-       <p> 
-        create groups, create channels, create or invite users, remove groups, rooms and users from channel
-    </p>
+
 </div>
 <div *ngIf="roleCheck() == 'Group Assis'">
      <h1>Group Assis</h1>
-     <p>
-        
-        can add or remove users in the group from channels within
-        the group. create channels within the group.
-    </p>
 </div>
 
-<div *ngIf="roleSet().createGroup == true"><button>create group</button></div>
+
+
+
+
+
+
+<button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+<div *ngIf="roleSet().createGroup == true" mat-menu-item (click)="$event.stopPropagation();"><mat-accordion><mat-expansion-panel><mat-expansion-panel-header><mat-panel-title>Create Group</mat-panel-title></mat-expansion-panel-header><mat-action-row><button>create group</button></mat-action-row></mat-expansion-panel></mat-accordion></div>
 <!--Main layout-->
-<app-group-list></app-group-list>
-<div *ngIf="roleSet().removeUser == true"><app-userlist></app-userlist>
-    <input type="text" [(ngModel)]="username" name="username" />
+
+<div *ngIf="roleSet().removeUser == true" mat-menu-item (click)="$event.stopPropagation();">
+    <input type="text" [(ngModel)]="username" name="username" placeholder="username" />
     <button type="type" (click) = "deleteUser(username)">remove user</button></div>
 
 
 
-            <div class="modal-header">
+            <div class="modal-header" b>
               <h5 class="modal-title">Create User</h5>
             </div>
             <div class="modal-body">
@@ -63,10 +53,26 @@
     <input type="text" [(ngModel)]="Npassword" name="pwd" />  
 </div>
 </div>
+</mat-menu>
 <div class="modal-footer">
 <button type="type" class="btn btn-primary" (click) = "createUser(Nusername, Npassword)">submit</button> 
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<app-group-list></app-group-list>
 
 <!--Footer-->
 <footer class="footer mt-auto py-3 bg-light">
