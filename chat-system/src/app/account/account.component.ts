@@ -1,8 +1,9 @@
 import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RolePermissionsService } from '../role-permissions.service';
+import { RolePermissionsService } from '../services/role-permissions.service';
 import{v4 as uuid} from 'uuid';
+import { SidenavComponent } from '../sidenav/sidenav.component';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',

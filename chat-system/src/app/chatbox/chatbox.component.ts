@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SocketioService } from '../socketio.service';
+import { SocketioService } from '../services/socketio.service';
 @Component({
   selector: 'app-chatbox',
   templateUrl: './chatbox.component.html',
@@ -27,7 +27,7 @@ SendMessage(){
         this.messages.push(message);
       });
 }
-private chat() {
+  chat() {
   if (this.currentMessage) {
     this.socketService.send(this.currentMessage);
     this.currentMessage = '';

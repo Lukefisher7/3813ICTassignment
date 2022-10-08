@@ -4,7 +4,6 @@ const cors = require('cors');
 const bodyParser = require("body-parser");
 const http = require("http").Server(app);
 const https = require("https");
-const url = require('url');
 const fs = require("fs");
 const PORT = 3000;
 const io = require('socket.io')(http, {
@@ -60,19 +59,19 @@ app.post("/api/auth", (req, res) => {
   } else if (!user_data) res.send(users); // debugging
 });
 
-MongoClient.connect(url, {/*poolSize:10,*/useNewUrlParser: true, useUnifiedTopology: true}, function(err, client){
+MongoClient.connect(url, function(err, client){
   if (err) {return console.log(err)}
       const dbName = 'chatappDB';
       const db = client.db(dbName);
 
-      require('./routes/addUser.js')(db,app);
-      require('./routes/addGroup.js')(db,app);
-      require('./routes/addChannel.js')(db,app);
-      require('./routes/postAllUsers')(db,app);
-      require('./routes/deleteuser')(db,app,ObjectID);
-      require('./routes/Login.js')(db,app);
-      require('./routes/getChannels')(db,app);
-      require('./routes/getGroups')(db,app);
+      require('./routes/UserRoutes/addUser')(db,app);
+      require('./routes/GroupRoutes/addGroup')(db,app);
+      require('./routes/ChannelRoutes/addChannel')(db,app);
+      require('./routes/UserRoutes/getUsers')(db,app);
+      require('./routes/UserRoutes/deleteUser')(db,app,ObjectID);
+      require('./routes/data/login')(db,app);
+      require('./routes/ChannelRoutes/getChannels')(db,app);
+      require('./routes/GroupRoutes/getGroups')(db,app);
 
-  //require('./listen.js')(http);
+  require('./listen.js')(http);
 })

@@ -9,24 +9,25 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AccountComponent } from './account/account.component';
 import { ChatboxComponent } from './chatbox/chatbox.component';
-import { GroupListComponent } from './group-list/group-list.component';
 import { GroupComponent } from './group/group.component';
-import { RolePermissionsService } from './role-permissions.service';
-import { UserlistComponent } from './userlist/userlist.component';
+import { RolePermissionsService } from './services/role-permissions.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
-import { SocketioService } from './socketio.service';
+import { SocketioService } from './services/socketio.service';
 import {CommonModule} from '@angular/common';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { ChannelComponent } from './channel/channel.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AccountComponent,
     ChatboxComponent,
-    GroupListComponent,
     GroupComponent,
-    UserlistComponent,
+    SidenavComponent,
+    ChannelComponent
+    
   ],
   imports: [
     BrowserModule,

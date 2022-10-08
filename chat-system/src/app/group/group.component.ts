@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RolePermissionsService } from '../role-permissions.service';
+import { RolePermissionsService } from '../services/role-permissions.service';
 @Component({
   selector: 'app-group',
   templateUrl: './group.component.html',
