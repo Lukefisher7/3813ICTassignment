@@ -1,5 +1,5 @@
 export interface User {
-    _id: String;
+    _id?: String;
     username: String;
     password: Number;
     email: String;

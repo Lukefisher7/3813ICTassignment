@@ -12,7 +12,12 @@ export class GroupComponent implements OnInit {
     chatLink(){
       this.router.navigate(['/chatbox']);
     }
-  
+    addUser(){};
+    removeUser(){};
+    channelList(){};
+    addChannel(){};
+    userList(){};
+    deleteGroup(){};
 
 
   ngOnInit(): void {

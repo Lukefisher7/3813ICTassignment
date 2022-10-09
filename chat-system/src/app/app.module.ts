@@ -12,7 +12,7 @@ import { ChatboxComponent } from './chatbox/chatbox.component';
 import { GroupComponent } from './group/group.component';
 import { RolePermissionsService } from './services/role-permissions.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatAccordion } from '@angular/material/expansion';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { SocketioService } from './services/socketio.service';
 import {CommonModule} from '@angular/common';
@@ -37,7 +37,8 @@ import { ChannelComponent } from './channel/channel.component';
     MatSelectModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSidenavModule
     
   ],
   providers: [RolePermissionsService, SocketioService],

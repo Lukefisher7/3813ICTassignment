@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+  getGroups(){};
+  logOut(){
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
+
 
   ngOnInit(): void {
   }

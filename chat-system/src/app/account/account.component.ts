@@ -1,9 +1,8 @@
-import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RolePermissionsService } from '../services/role-permissions.service';
 import{v4 as uuid} from 'uuid';
-import { SidenavComponent } from '../sidenav/sidenav.component';
+
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -17,10 +16,7 @@ username = '';
   
   constructor(private router: Router, private route: ActivatedRoute, public rolePerms: RolePermissionsService, ){};
   title = 'chat-system';
-  logOut(){
-    localStorage.clear();
-    this.router.navigate(['/login']);
-  }
+  
   roleCheck(){
     var users: any = localStorage.getItem('user_data');
     users = JSON.parse(users);
@@ -82,6 +78,12 @@ username = '';
     localStorage.setItem('user_data', newdata);
     console.log(newdata);
   };
+
+  //createUser(){};
+  //deleteUser(){};
+  getGroups(){};
+  addGroups(){};
+  
 
 
         

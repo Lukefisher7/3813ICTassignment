@@ -9,6 +9,12 @@ export class ChannelComponent implements OnInit {
 
   constructor() { }
 
+  addUser(){};
+  removeUser(){};
+  deleteChannel(){};
+  userlist(){};
+  
+
   ngOnInit(): void {
   }
 

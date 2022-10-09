@@ -13,16 +13,11 @@ const io = require('socket.io')(http, {
   }
 });
 
-const MongoClient = require('mongodb').MongoClient;
-var ObjectID = require('mongodb').ObjectID;
-const url = 'mongodb://localhost:27017';
-
-const userfile = "./data/user.json";
-const users = require(userfile);
-
+//socket initialisation//
 const sockets = require("./socket.js");
 const server = require("./listen.js");
 
+//parse requests
 app.use(cors());
 
 // parse application/x-www-form-urlencoded
@@ -35,43 +30,50 @@ app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
 
-// respond with "hello world" when a GET request is made to the homepage
+// respond with "server page: hello world" when a GET request is made to the homepage
 app.get("/", (req, res) => {
   console.log("Server is running at port", PORT);
-  res.send("hello world");
+  res.send("Server Page: Hello World");
 });
 
 
-app.post("/api/auth", (req, res) => {
-  //console.log(req.body.username); // communication
-
-  const user_data = users.find((user) => user.username == req.body.username && user.password == req.body.password); // check for authentication, will return undefined if not found, .find uses testing function.
-  idx = users.findIndex((user) => user.username == req.body.username); // index that this was found.
-  sockets.connect(io, PORT);
-  server.listen(http, PORT);
-
-  if (user_data) {
-    // the user data was found by the .find method
-    users[idx].valid = true; // edit original data
-    
-    res.send(users); // send data back
-    users[idx].valid = false; //reset data to false.
-  } else if (!user_data) res.send(users); // debugging
-});
-
-MongoClient.connect(url, function(err, client){
+//mongoDB setup and database operations declared
+var mongodb = require('mongodb');
+const MongoClient = mongodb.MongoClient;
+var ObjectID = mongodb.ObjectID;
+const url = 'mongodb://localhost:27017';
+const userRoute = require('./routes/UserOperations')
+const groupRoute = require('./routes/GroupOperations')
+const channelRoute = require('./routes/ChannelOperations')
+MongoClient.connect(url, {family:4}, function(err, client){
   if (err) {return console.log(err)}
       const dbName = 'chatappDB';
       const db = client.db(dbName);
 
-      require('./routes/UserRoutes/addUser')(db,app);
-      require('./routes/GroupRoutes/addGroup')(db,app);
-      require('./routes/ChannelRoutes/addChannel')(db,app);
-      require('./routes/UserRoutes/getUsers')(db,app);
-      require('./routes/UserRoutes/deleteUser')(db,app,ObjectID);
-      require('./routes/data/login')(db,app);
-      require('./routes/ChannelRoutes/getChannels')(db,app);
-      require('./routes/GroupRoutes/getGroups')(db,app);
+      //user operations routes //
+      app.post('/addUser', userRoute.insert);
+      app.get('/getUsers', userRoute.find);
+      //app.put('/editUser', userRoute.update);
+      app.post('/deleteUser', userRoute.delete);
+
+
+      //group operations routes //
+      app.post('/addGroup', groupRoute.insert);
+      app.get('/getGroups', groupRoute.find);
+      //app.put('/removeUser', groupRoute.update);
+      app.post('/deleteGroup', groupRoute.delete);
+
+
+      //channel operations routes//
+      app.post('/addChannel', channelRoute.insert);
+      app.get('/getChannels', channelRoute.find);
+      //app.put('/removeUser', channelRoute.update);
+      app.post('/deleteChannel', channelRoute.delete);
+
+
+      //user authentication using mongodb//
+     require('./data/login')(app, db);
 
   require('./listen.js')(http);
 })
+
