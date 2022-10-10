@@ -4,7 +4,7 @@ import { RolePermissionsService } from '../services/role-permissions.service';
 import{v4 as uuid} from 'uuid';
 import { UserDataService } from '../services/user-data.service';
 import { User } from '../user.model';
-
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-account',
@@ -16,68 +16,57 @@ accrole: any;
 Nusername = '';
 Npassword = '';
 username = '';
+url =  "http://localhost:3000";
+newGroup = '';
   
-  constructor(private router: Router, public rolePerms: RolePermissionsService, public userdata: UserDataService ){};
+  constructor(private router: Router, public rolePerms: RolePermissionsService, public userdata: UserDataService, private httpClient: HttpClient ){};
   title = 'chat-system';
+  userRole = '';
   
-  roleCheck(){
-    var users: any = localStorage.getItem('user_data');
-    users = JSON.parse(users);
-    let i= 0;
-    while(users[i].valid == false)
-    {
-     if(users[i].valid == true){
-      console.log(users[i]);
-      return users[i].role;
-      } 
-
-         }
-        
-        }
     
   roleSet(){
-    var user: any = this.roleCheck()
-    if (user == 'Super Admin'){
+    var role: any = localStorage.getItem('role');
+    if (role == 'Super Admin'){
      this.accrole = this.rolePerms.SuperAdmin;
-     console.log(this.accrole);
+     //console.log(this.accrole);
+     this.userRole = 'Super Admin';
      return this.accrole;
      }
-     if (user == 'Group Admin'){
+     if (role == 'Group Admin'){
       this.accrole = this.rolePerms.GroupAdmin;
-     console.log(this.accrole);
+     //console.log(this.accrole);
+     this.userRole = 'Group Admin';
      return this.accrole;
      }
-     if (user == 'Group Assis'){
+     if (role == 'Group Assis'){
       this.accrole = this.rolePerms.GroupAssis;
-     console.log(this.accrole);
+     //console.log(this.accrole);
+     this.userRole = 'Group Assis';
      return this.accrole;
      }
-     if (user == 'BaseUser'){
+     if (role == 'BaseUser'){
       this.accrole = this.rolePerms.BaseUser;
-     console.log(this.accrole);
+     //console.log(this.accrole);
+     this.userRole = 'Base User';
      return this.accrole;
      }
   }
 
-  deleteUser(removeduser: string){
-    var data: any= localStorage.getItem('user_data');
-    var existingEntries = JSON.parse(data);
-    console.log(existingEntries.findIndex((removeduser: any) => {
-      return removeduser.username == this.username;
-    }));
-    existingEntries.splice(existingEntries.findIndex(this.username), 1);
-    console.log(existingEntries);
-    var newdata: any = JSON.stringify(existingEntries);
-    localStorage.setItem('user_data', newdata);
-    console.log(newdata);
+  deleteUser(){
+    this.userdata.deleteUser(this.Nusername);
   };
 
   createUser(){
     this.userdata.addUser(this.Nusername);
   };
   //deleteUser(){};
-  getGroups(){};
-  addGroups(){};
+  
+
+
+  addGroups(){
+    this.httpClient.post(this.url + "/api/insertGroup", this.newGroup);
+    this.httpClient.post(this.url + "/api/insertGroup", this.newGroup)
+  };
   
 
 

@@ -52,7 +52,6 @@ exports.find = function (app,db) {
         db.collection('users').find(query).toArray(function (err, result) {
         if (err) throw err;
         res.send(result);
-        console.log(result);
         });
     });
     
@@ -74,3 +73,5 @@ exports.update = function(app,db)
 });
 
 }
+
+

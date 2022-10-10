@@ -83,6 +83,7 @@ MongoClient.connect(url, {family:4}, function(err, client){
      userRoute.delete(app,db);
      userRoute.find(app,db);
     userRoute.update(app, db); 
+    
 
 
       //group operations routes //

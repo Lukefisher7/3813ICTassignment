@@ -17,13 +17,13 @@
   <app-sidenav></app-sidenav>
 <p>Main home page to select chat room</p>
 </main>
-<div *ngIf="roleCheck() == 'Super Admin'">
+<div *ngIf="userRole == 'Super Admin'">
     <h1>Super Admin</h1> 
 </div>
-<div *ngIf="roleCheck() == 'Group Admin'">
+<div *ngIf="userRole == 'Group Admin'">
 
 </div>
-<div *ngIf="roleCheck() == 'Group Assis'">
+<div *ngIf="userRole == 'Group Assis'">
      <h1>Group Assis</h1>
 </div>
 <div *ngIf="roleSet().createUser == true">
@@ -40,14 +40,10 @@
 
 
 
-<button mat-button [matMenuTriggerFor]="menu">Menu</button>
-<mat-menu #menu="matMenu">
-<div *ngIf="roleSet().createGroup == true" mat-menu-item (click)="$event.stopPropagation();"><mat-accordion><mat-expansion-panel><mat-expansion-panel-header><mat-panel-title>Create Group</mat-panel-title></mat-expansion-panel-header><mat-action-row><button>create group</button></mat-action-row></mat-expansion-panel></mat-accordion></div>
-<!--Main layout-->
 
-<div *ngIf="roleSet().removeUser == true" mat-menu-item (click)="$event.stopPropagation();">
+<div *ngIf="roleSet().removeUser == true">
     <input type="text" [(ngModel)]="username" name="username" placeholder="username" />
-    <button type="type" (click) = "deleteUser(username)">remove user</button></div>
+    <button type="type" (click) = "deleteUser()">remove user</button></div>
 
 
 

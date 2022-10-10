@@ -40,11 +40,16 @@ export class LoginComponent implements OnInit {
     this.httpClient.post(this.url + '/api/auth', this.fetchedData).subscribe((data:any) => {
 
       if(data = true){
-        localStorage.setItem('username', data.username);
-        this.httpClient.get(this.url + "/api/getUsers").subscribe((result: any) => {
-
+        
+        this.httpClient.get(this.url + "/api/getUsers").subscribe((userlist: any) => {
+          for(let i = 0; i < userlist.length; i++){
+            if(userlist[i].username == this.username){
+              localStorage.setItem('role', userlist[i].role);
+              localStorage.setItem('username', userlist[i].username);
               this.router.navigate(['/account']);
-            })
+            }
+          }
+          })
           }
   if(data = false){
     console.log('not correct combo');

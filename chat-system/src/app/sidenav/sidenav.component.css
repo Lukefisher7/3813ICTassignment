@@ -53,7 +53,7 @@
     top: 0;
     left: 0;
     bottom: 0;
-    background-color: #FF4455;
+    background-color: #d3d3dd;
     transform: translateX(-100%);
     transition: ease-in-out 300ms transform;
     width: 300px;

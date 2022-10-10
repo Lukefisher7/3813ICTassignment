@@ -51,3 +51,31 @@ exports.list = function(app,db){
       });
     });
 }
+
+/*exports.add = function(app,db){
+    app.post('/api/addGroupUser', (req, res) => {
+        var newUser = { name: req.body.username }
+    
+            var groupUserExists = false;
+    
+            //checking if group name already exists through group collection//
+            var query = { name: req.body.users };
+            db.collection('groups').find(query).toArray(function(err, result) {
+                if (err) throw err;
+                if (result.length != 0) {
+                    groupUserExists = true;
+                }
+            });
+    
+            if (!groupExists) {
+                //insert the new group into db
+                db.collection('groups').insertOne(groupObj, function(err, result) {
+                    if (err) throw err;
+                    res.send(true);
+                });
+            }
+            else {
+                res.send(false);
+            };
+       
+}*/

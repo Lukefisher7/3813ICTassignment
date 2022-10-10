@@ -13,7 +13,9 @@ export class AppComponent {
   constructor(router: Router){
   }
   hide(){
-    
     return (this.element = false, console.log('false'));
   }
+ /* loggedin(){
+    if()
+  }*/
 }
