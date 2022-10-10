@@ -26,7 +26,14 @@
 <div *ngIf="roleCheck() == 'Group Assis'">
      <h1>Group Assis</h1>
 </div>
-
+<div *ngIf="roleSet().createUser == true">
+    
+  <input type="text" [(ngModel)]="Nusername" name="username" />
+  <input type="text" [(ngModel)]="Npassword" name="pwd" />  
+</div>
+<div class="modal-footer">
+<button type="type" class="btn btn-primary" (click) = "createUser()">submit</button> 
+</div>
 
 
 
@@ -48,16 +55,8 @@
               <h5 class="modal-title">Create User</h5>
             </div>
             <div class="modal-body">
-<div *ngIf="roleSet().createUser == true">
-    
-    <input type="text" [(ngModel)]="Nusername" name="username" />
-    <input type="text" [(ngModel)]="Npassword" name="pwd" />  
-</div>
-</div>
-</mat-menu>
-<div class="modal-footer">
-<button type="type" class="btn btn-primary" (click) = "createUser(Nusername, Npassword)">submit</button> 
-</div>
+              
+
 
 
 <!--Footer-->

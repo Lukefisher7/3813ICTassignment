@@ -1,23 +1,16 @@
 <link href="/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<div class="sidebar-opener" (click)="showsidebar = !showsidebar">
+  Click me to open/close the sidebar
+</div>
 
-<div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-  <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-    <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-    <span class="fs-5 fw-semibold">Collapsible</span>
-  </a>
-  <ul class="list-unstyled ps-0">
-    <li class="mb-1">
-      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true" style="color:rgb(0, 110, 255)">
-        Home ▼
-      </button>
-      <div class="collapse" id="home-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Overview</a></li>
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Updates</a></li>
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Reports</a></li>
-        </ul>
-      </div>
-    </li>
+<div class="sidebar-slider" [class.sidebar-slide-in]="showsidebar">
+  <div
+      class="sidebar-close"
+      (click)="showsidebar = !showsidebar"
+  >
+      X
+  </div>
+  <div class="sidebar-content">
     <li class="mb-1">
       <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false" style="color:rgb(0, 110, 255)">
         Dashboard ▼
@@ -31,37 +24,9 @@
         </ul>
       </div>
     </li>
-    <li class="mb-1">
-      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false" style="color:rgb(0, 110, 255)" >
-        Orders ▼
-      </button>
-      <div class="collapse" id="orders-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">New</a></li>
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Processed</a></li>
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Shipped</a></li>
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Returned</a></li>
-        </ul>
-      </div>
-    </li>
-    <li class="border-top my-3"></li>
-    <li class="mb-1">
-      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false" style="color:rgb(0, 110, 255)">
-        Account ▼
-      </button>
-      <div class="collapse" id="account-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">New...</a></li>
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Profile</a></li>
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Settings</a></li>
-          <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Sign out</a></li>
-        </ul>
-      </div>
-    </li>
-  </ul>
-  <footer class="footer mt-auto py-3 bg-light">
-    <div class="container" class = "btn-left">
-      <button type="type" value="submit" (click) = "logOut()">Logout</button>
-    </div>
-  </footer>
+  </div>
 </div>
+
+
+ 
+    

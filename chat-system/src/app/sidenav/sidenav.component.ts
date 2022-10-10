@@ -14,6 +14,7 @@ export class SidenavComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['/login']);
   }
+  public showsidebar:  boolean = false;
 
 
   ngOnInit(): void {

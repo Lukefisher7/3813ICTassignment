@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SocketioService } from '../services/socketio.service';
+import { NgModule } from '@angular/core';
 @Component({
   selector: 'app-chatbox',
   templateUrl: './chatbox.component.html',

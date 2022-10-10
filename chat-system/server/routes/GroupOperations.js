@@ -1,10 +1,12 @@
 //add group
-exports.insert = function(req,res){
+exports.insert = function(app,db){
+
+    app.post("/api/insertGroup", (req, res) => {
     var groupObj = { name: req.body.name, users: req.body.users }
 
         var groupExists = false;
 
-        //check if group already exists
+        //checking if group name already exists through group collection//
         var query = { name: req.body.name };
         db.collection('groups').find(query).toArray(function(err, result) {
             if (err) throw err;
@@ -22,24 +24,30 @@ exports.insert = function(req,res){
         }
         else {
             res.send(false);
-        }
+        };
+    });
 }
 
-//delete group
-exports.delete = function(req,res){
+
+//delete group with deleteOne function in mongo database for groups
+exports.delete = function(app,db){
+    app.post("/api/deleteGroup", (req, res) => {
     var query = { name: req.body.name };
         console.log("deleting group: ", req.body.name);
         db.collection("groups").deleteOne(query, function(err) {
             if (err) throw err;
             res.send(true);
         });
+    });
 }
 
-//get list of groups
-exports.list = function(req,res){
+//get list of groups into array from database 'groups'
+exports.list = function(app,db){
+    app.get('/api/getGroups', (req, res) => {
     var query = {};
       db.collection('groups').find(query).toArray(function (err, result) {
         if (err) throw err;
         res.send(result);
       });
+    });
 }

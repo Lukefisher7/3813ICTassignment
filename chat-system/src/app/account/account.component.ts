@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RolePermissionsService } from '../services/role-permissions.service';
 import{v4 as uuid} from 'uuid';
+import { UserDataService } from '../services/user-data.service';
+import { User } from '../user.model';
+
 
 @Component({
   selector: 'app-account',
@@ -14,14 +17,14 @@ Nusername = '';
 Npassword = '';
 username = '';
   
-  constructor(private router: Router, private route: ActivatedRoute, public rolePerms: RolePermissionsService, ){};
+  constructor(private router: Router, public rolePerms: RolePermissionsService, public userdata: UserDataService ){};
   title = 'chat-system';
   
   roleCheck(){
     var users: any = localStorage.getItem('user_data');
     users = JSON.parse(users);
     let i= 0;
-    for (i =0; i <= users.length; i++)
+    while(users[i].valid == false)
     {
      if(users[i].valid == true){
       console.log(users[i]);
@@ -56,16 +59,6 @@ username = '';
      }
   }
 
-  createUser(newuser: string, pwd: string){
-    var data: any= localStorage.getItem('user_data');
-    var existingEntries = JSON.parse(data);
-    console.log(existingEntries);
-    var info: any = {id: uuid(), username: newuser, password: pwd, role: 'BaseUser', valid : false}
-    existingEntries.push(info)
-    var newdata: any = JSON.stringify(existingEntries);
-    localStorage.setItem('user_data', newdata);
-};
-
   deleteUser(removeduser: string){
     var data: any= localStorage.getItem('user_data');
     var existingEntries = JSON.parse(data);
@@ -79,7 +72,9 @@ username = '';
     console.log(newdata);
   };
 
-  //createUser(){};
+  createUser(){
+    this.userdata.addUser(this.Nusername);
+  };
   //deleteUser(){};
   getGroups(){};
   addGroups(){};

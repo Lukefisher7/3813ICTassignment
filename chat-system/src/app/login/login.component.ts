@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { findIndex } from 'rxjs';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +14,9 @@ export class LoginComponent implements OnInit {
   password = '';
   fetchedData = {};
   authenticated = false;
+  url =  "http://localhost:3000";
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute, private httpClient: HttpClient) {}
   loggedIn() {
     if (localStorage.getItem('user_data') == null) {
       return true;
@@ -33,42 +35,22 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    fetch('http://localhost:3000/api/auth', {
-      body: JSON.stringify({
-        username: this.username,
-        password: this.password,
-      }),
-      method: 'POST',
-      headers: { 'content-type': 'application/json' }, 
-    }) // fetch
-      .then((response) =>
-        response
-          .json()
-          .then((data) => (this.fetchedData = data))
-          .then((data) => {
-            console.log(data);
-            for(let i =0; i< data.length; i++){
-            if (data[i].valid) {
-              // check if user is authenticated
-              console.log('Authenticated');
-              localStorage.clear();
-              this.authenticated = true;
-              localStorage.setItem(
-                'user_data',
-                JSON.stringify(this.fetchedData)
-              );
-              console.log('working', this.fetchedData);
-              this.loggedIn();
-              this.router.navigate(['/account']);
-              return true;
-            } 
-          }
-          this.authenticated = false;
-          return false;
-        })
-      );
+    this.fetchedData = {username: this.username, password: this.password};
+    console.log("logging in with" + ' ' + this.username);
+    this.httpClient.post(this.url + '/api/auth', this.fetchedData).subscribe((data:any) => {
 
-    // https://caniuse.com/?search=fetch f*k IE users
+      if(data = true){
+        localStorage.setItem('username', data.username);
+        this.httpClient.get(this.url + "/api/getUsers").subscribe((result: any) => {
+
+              this.router.navigate(['/account']);
+            })
+          }
+  if(data = false){
+    console.log('not correct combo');
+    alert("please try another username or password");
+  }
+})
   }
 
   ngOnInit(): void {}

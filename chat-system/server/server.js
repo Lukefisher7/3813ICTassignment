@@ -16,6 +16,7 @@ const io = require('socket.io')(http, {
 //socket initialisation//
 const sockets = require("./socket.js");
 const server = require("./listen.js");
+const userfile = require('./data/user.json');
 
 //parse requests
 app.use(cors());
@@ -36,6 +37,8 @@ app.get("/", (req, res) => {
   res.send("Server Page: Hello World");
 });
 
+//require('./listen.js')(http);
+
 
 //mongoDB setup and database operations declared
 var mongodb = require('mongodb');
@@ -45,35 +48,64 @@ const url = 'mongodb://localhost:27017';
 const userRoute = require('./routes/UserOperations')
 const groupRoute = require('./routes/GroupOperations')
 const channelRoute = require('./routes/ChannelOperations')
+const chatHistRoute = require('./routes/HistoryOperations')
+const loginRoute = require('./data/login');
 MongoClient.connect(url, {family:4}, function(err, client){
   if (err) {return console.log(err)}
       const dbName = 'chatappDB';
       const db = client.db(dbName);
+      console.log("database created")
+ 
+      db.createCollection('users', function(err, res) {
+          if (err) throw err;
+          console.log("users Collection created!");})
+
+      db.createCollection('groups', function(err, res) {
+          if (err) throw err;
+          console.log("groups Collection created!");})
+
+      db.createCollection('channels', function(err, res) {
+          if (err) throw err;
+          console.log("channels Collection created!");})
+
+
+      db.createCollection('chatHistory', function(err, res) {
+          if (err) throw err;
+          console.log("chat history Collection created!");})
+
+          db.collection("users").insertMany(userfile, function (err, res) {
+            if (err) throw err;
+            console.log("Number of documents inserted: " + res.insertedCount);
+          });
 
       //user operations routes //
-      app.post('/addUser', userRoute.insert);
-      app.get('/getUsers', userRoute.find);
-      //app.put('/editUser', userRoute.update);
-      app.post('/deleteUser', userRoute.delete);
+     userRoute.insert(app,db);
+     userRoute.delete(app,db);
+     userRoute.find(app,db);
+    userRoute.update(app, db); 
 
 
       //group operations routes //
-      app.post('/addGroup', groupRoute.insert);
-      app.get('/getGroups', groupRoute.find);
-      //app.put('/removeUser', groupRoute.update);
-      app.post('/deleteGroup', groupRoute.delete);
+      groupRoute.delete(app,db);
+      groupRoute.insert(app,db);
+      groupRoute.list(app,db);
 
 
       //channel operations routes//
-      app.post('/addChannel', channelRoute.insert);
-      app.get('/getChannels', channelRoute.find);
-      //app.put('/removeUser', channelRoute.update);
-      app.post('/deleteChannel', channelRoute.delete);
+      channelRoute.insert(app,db);
+      channelRoute.delete(app,db);
+      channelRoute.find(app,db);
+
+      //chat history routes//
+      chatHistRoute.delete(app, db);
+      chatHistRoute.find(app,db);
+      chatHistRoute.insert(app,db);
+    
 
 
       //user authentication using mongodb//
-     require('./data/login')(app, db);
+     loginRoute(app,db);
 
-  require('./listen.js')(http);
+ 
 })
 
