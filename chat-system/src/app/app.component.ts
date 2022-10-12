@@ -10,12 +10,15 @@ export class AppComponent {
   title = 'chat';
   element = true;
 
-  constructor(router: Router){
+  constructor(private router: Router){
   }
   hide(){
     return (this.element = false, console.log('false'));
   }
- /* loggedin(){
-    if()
-  }*/
+  loggedin(){
+    if(localStorage.getItem('')){
+      this.router.navigate(['/login']);
+
+    }
+  }
 }

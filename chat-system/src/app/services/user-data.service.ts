@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 import { User } from '../user.model';
 
 @Injectable({
@@ -7,27 +8,27 @@ import { User } from '../user.model';
 })
 
 export class UserDataService {
-  url = 'http://localhost:3000/';
+  url = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
-
+// find all users, and return a promise of all user
   getUserList() {
-    return this.http.get<User[]>(this.url + 'getUsers');
+    return this.http.get<User[]>(this.url + '/api/getUsers');
   }
 
   addUser(user:any){
     console.log(user);
-    this.http.post(this.url + 'addUser', user).subscribe(res => console.log("user added"));
+    this.http.post(this.url + '/api/insertUser', user).subscribe(res => alert("user added"));
 
   }
 
   deleteUser(user: any){
     console.log(user);
-    this.http.delete(this.url + 'deleteUser', user).subscribe(res => console.log('user removed'));
+    this.http.post(this.url + '/api/deleteUser', user).subscribe(res => alert('user removed'));
 
   }
-  editUser(user: any, role: any){
-    return this.http.put(this.url + 'editUser', user, role);
+  editUser(user: any){
+    return this.http.put(this.url + '/api/editUser', user);
 
   }
 }

@@ -7,33 +7,37 @@
 
 </header>
 
-<!--Main Navigation-->
-<h2>CHAT SELECTION</h2>
-
-
-<!--Main layout-->
-
-<main>
   <app-sidenav></app-sidenav>
-<p>Main home page to select chat room</p>
-</main>
-<div *ngIf="userRole == 'Super Admin'">
-    <h1>Super Admin</h1> 
-</div>
-<div *ngIf="userRole == 'Group Admin'">
 
-</div>
-<div *ngIf="userRole == 'Group Assis'">
-     <h1>Group Assis</h1>
-</div>
+
+    <h1>welcome {{Currentname}}, {{role}}</h1> 
+  
+  <div *ngIf = "role == 'Base User' || 'Group Assis'" position = "text-centre"><p>Use account navigation to enter group</p></div>
+
 <div *ngIf="roleSet().createUser == true">
-    
-  <input type="text" [(ngModel)]="Nusername" name="username" />
-  <input type="text" [(ngModel)]="Npassword" name="pwd" />  
+  
+  <div style = "margin-top: 10px;" class="formClass glowing-border">
+    <h3 class="h3 mb-3 fw-normal">Create User</h3>
+    <body class = "text-centre">
+    <main class = "form-signin w-100 m-auto">
+      <form method="POST" class="form-login pt-5">
+          <div class="form-group">
+            <label for="username">Username</label>
+    <input type="text" [(ngModel)]="Nusername" name="Nusername" placeholder="username" class="form-control" autocomplete="off"/> 
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+<input type="text" [(ngModel)]="Npassword" name="Npassword" placeholder="password" class="form-control"/> 
+  </div>
+  <div class="form-group">
+    <label for="Nrole">Role</label>
+<input type="text" [(ngModel)]="Nrole" name="Nrole" placeholder="role" class="form-control"/> 
 </div>
-<div class="modal-footer">
-<button type="type" class="btn btn-primary" (click) = "createUser()">submit</button> 
-</div>
+  <button type="submit" class="btn btn-lg btn-primary btn-block mt-3" (click) = "createUser()">submit</button> 
+</form>
+</main>
+    </body>
+  </div>
 
 
 
@@ -41,22 +45,90 @@
 
 
 
-<div *ngIf="roleSet().removeUser == true">
-    <input type="text" [(ngModel)]="username" name="username" placeholder="username" />
-    <button type="type" (click) = "deleteUser()">remove user</button></div>
+  <div *ngIf="roleSet().removeUser == true">
+  
+    <div style = "margin-top: 10px;" class="formClass glowing-border">
+      <h3 class="h3 mb-3 fw-normal">Delete User</h3>
+      <body class = "text-centre">
+      <main class = "form-signin w-100 m-auto">
+        <form method="POST" class="form-login pt-5">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="username">Username</label>
+    <input type="username" [(ngModel)]="removeUser" name="removeUser" placeholder="username" class="form-control" autocomplete="off"/> 
+      </div>
+        </div>
+  <button type="button" class="btn btn-lg btn-primary btn-block mt-3" (click) = "deleteUser()">submit</button> 
+  </form>
+  </main>
+      </body>
+    </div>
 
 
 
-            <div class="modal-header" b>
-              <h5 class="modal-title">Create User</h5>
+
+    <div *ngIf="roleSet().createGroup == true">
+  
+      <div style = "margin-top:10px" class="formClass glowing-border">
+        <h3 class="h3 mb-3 fw-normal">Create Group</h3>
+        <body class = "text-centre">
+        <main class = "form-signin w-100 m-auto">
+          <form method="POST" class="form-login pt-5">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="username">Group Name</label>
+      <input type="text" [(ngModel)]="newGroupname" name="newGroupname" placeholder="group name" class="form-control"/> 
+        </div>
+          </div>
+      <button type="submit" class="btn btn-lg btn-primary btn-block mt-3" (click) = "createGroup()">submit</button> 
+    </form>
+    </main>
+        </body>
+      </div>
+
+      <div *ngIf="roleSet().updateUserChannelPerms == true">
+  
+        <div style = "margin-top: 10px;" class="formClass glowing-border">
+          <h3 class="h3 mb-3 fw-normal">Change User Role</h3>
+          <body class = "text-centre">
+          <main class = "form-signin w-100 m-auto">
+            <form method="POST" class="form-login pt-5">
+                <div class="form-group">
+                  <label for="username">Username</label>
+          <input type="text" [(ngModel)]="updatedUser" name="updatedUser" placeholder="username" class="form-control" autocomplete="off"/> 
             </div>
-            <div class="modal-body">
-              
+            <div class="form-group">
+              <label for="role">New Role</label>
+      <input type="text" [(ngModel)]="newRole" name="newRole" placeholder="new role" class="form-control"/> 
+            </div>
+        <button type="submit" class="btn btn-lg btn-primary btn-block mt-3" (click) = "editRole()">submit</button> 
+      </form>
+      </main>
+          </body>
+        </div>
+      </div>
+   
+      <div *ngIf="roleSet().deleteGroup == true">
+  
+        <div style = "margin-top: 10px;" class="formClass glowing-border">
+          <h3 class="h3 mb-3 fw-normal">Delete Group</h3>
+          <body class = "text-centre">
+          <main class = "form-signin w-100 m-auto">
+            <form method="POST" class="form-login pt-5">
+            <div class="form-group">
+              <div class="form-group">
+                <label for="deletedGroup">Group Name</label>
+        <input type="text" [(ngModel)]="deletedGroup" name="deletedGroup" placeholder="group name" class="form-control" autocomplete="off"/> 
+          </div>
+            </div>
+      <button type="button" class="btn btn-lg btn-primary btn-block mt-3" (click) = "deleteGroup()">submit</button> 
+      </form>
+      </main>
+          </body>
+        </div>
 
 
+       
 
-<!--Footer-->
-<footer class="footer mt-auto py-3 bg-light">
 
-  </footer>
-<!--Footer-->
+        

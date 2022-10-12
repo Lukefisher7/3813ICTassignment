@@ -1,34 +1,71 @@
 <app-sidenav></app-sidenav>
-<div class="bd-example-snippet bd-code-snippet"><div class="bd-example">
-    <p class="h1">Group Page</p>
+<header class="page-header" position = "text-centre" >
+  <h1>Group Page</h1></header>
+
+
+<div style = "position: relative; left: 1250px;">
+  <div class ="row">
+  <div class="col-4">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active disabled" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Channel List</a>
+      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">C1</a>
+      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">C2</a>
+      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">C3</a>
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list"></div>
+      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
+      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
+      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+    </div>
+  </div>
+</div>
 </div>
 
-<table class="table table-dark table-hover">
-    <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Channel</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td><a routerLink = "/chatbox">Channel</a></td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-  </table>
+<div *ngIf="roleSet().deleteUser == true">
+<div style = "margin-top: 10px; height: auto;" class="formClass glowing-border">
+  <h2 class="h3 mb-3 fw-normal">Add User to group</h2>
+  <body class = "text-centre">
+  <main class = "form-signin w-100 m-auto">
+    <form method="POST" class="form-login pt-5">
+    <div class="form-group">
+      <label for="user">User to add</label>
+      <input type="text" name="user" id="user" [(ngModel)]="user" class="form-control">
+  </div>
+  <div class="form-group">
+      <label for="group">group</label>
+      <input type="group" class="form-control" id="group" name="group" [(ngModel)]="group">
+  </div>
+  <!-- Login Button -->
+  <button type="submit" (click)="addGroupUser()" class="btn btn-lg btn-primary btn-block mt-3">Add user to group</button>
+  </form>
+  </main>
+  </body>
+</div>
+
+
+  <div style = "margin-top: 10px; height: auto;" class="formClass glowing-border">
+    <h2 class="h3 mb-3 fw-normal">Remove User from group</h2>
+    <body class = "text-centre">
+    <main class = "form-signin w-100 m-auto">
+      <form method="POST" class="form-login pt-5">
+      <div class="form-group">
+        <label for="removedUser">User to remove</label>
+        <input type="text" name="removedUser" id="removedUser" [(ngModel)]="removedUser" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="removedgroup">group</label>
+        <input type="removedgroup" class="form-control" id="removedgroup" name="removedgroup" [(ngModel)]="removedgroup">
+    </div>
+    <!-- Login Button -->
+    <button type="submit" (click)="removeUser()" class="btn btn-lg btn-primary btn-block mt-3">remove user from group</button>
+    </form>
+    </main>
+    </body>
+</div>
+
+</div>
+
+  

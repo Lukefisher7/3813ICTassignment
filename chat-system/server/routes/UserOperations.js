@@ -1,9 +1,17 @@
+//User REST API
 exports.insert = function(app,db){
     app.post("/api/insertUser", (req, res) => {
-        var user = { username: req.body.username, email: req.body.email, password: req.body.password, role: req.body.role};
+        
+        
+        var Enteredpassword = req.body.password;
         var uname = req.body.username;
+        var enteredRole = req.body.role
         var duplicate = false;
 
+        userObj = {username: uname, password: Enteredpassword, role: enteredRole}
+        
+        
+        console.log(userObj);
         var query = {username: uname};
 
         const collection = db.collection('users');
@@ -11,11 +19,12 @@ exports.insert = function(app,db){
         collection.find(query).toArray((err, count)=>{
         if(count != 0){
             duplicate = true;
+            console.log('username already used')
         }
 
         if (!duplicate){
         //if no duplicate 
-        collection.insertOne (user, (err, dbres)=>{
+        collection.insertOne(userObj, (err, result)=>{
         if (err) throw err;
         
         //send back to client true to indicate user has been inserted
@@ -35,11 +44,15 @@ exports.delete = function (app,db) {
 
     /* Deleting a user from the database. */
     app.post("/api/deleteUser", (req, res) => {
-        var query = { username: req.body.username };
-        console.log("removing user: ", req.body.username);
-        db.collection("users").deleteOne(query, function(err) {
+        var user = req.body.username
+        
+        console.log(user);
+        console.log("removing user: ", user);
+        db.collection("users").deleteOne({username : user}, function(err) {
             if (err) throw err;
             res.send(true);
+            console.log("user removed")
+            
         });
     });
     }
@@ -62,13 +75,17 @@ exports.find = function (app,db) {
 
 exports.update = function(app,db)
 {
-    app.get('/api/editUser', (req,res) => {
-    var query = { username: req.body.username };
-    var newRole = {$set: {role: req.body.role}}
+    app.post('/api/editUser', (req,res) => {
+    var query = req.body.username;
+    var newRole = req.body.role;
+    console.log(newRole);
     console.log("updating user role: ", req.body.username);
-    db.collection('users').updateOne(query, newRole, function(err,res){
+    db.collection('users').updateOne({username: query}, {$set: {role: req.body.role}}, function(err,res){
         if (err) throw err;
         console.log("user role updated");
+
+
+        
     });
 });
 

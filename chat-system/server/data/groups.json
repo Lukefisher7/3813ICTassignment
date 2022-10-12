@@ -1,18 +1,21 @@
 [{
-    
+    "_id" : 1,
     "name": "Group 1",
-    "users": ["John", "Super"]
+    "users": ["John", "Super"],
+    "channels": ["C1", "C2"]
     
 },
 {
-    
+    "_id" : 2,
     "name": "Group 2",
-    "users": ["John", "Peter"]
+    "users": ["John", "Peter"],
+    "channels": ["C3", "C4"]
 },
 {
     
-    
+    "_id" : 3,
     "name": "Group 3",
-    "users": ["Peter", "Super"]
+    "users": ["Peter", "Super"],
+    "channels": ["C5", "C6"]
 }
 ]

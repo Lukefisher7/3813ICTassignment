@@ -48,7 +48,7 @@ exports.delete = function (app, db) {
 
 }
 
-//get list of channels
+//get list of channels within group object
 exports.find = function (app, db) {
 
     /* This is a get request to the server. asks for array of channels from the database collection named channels. */

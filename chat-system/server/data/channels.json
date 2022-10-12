@@ -1,0 +1,20 @@
+[{
+    
+    "name": "C1",
+    "users": ["John", "Super"]
+    
+},
+{
+    
+    "name": "C2",
+    "users": ["John", "Peter"]
+
+},
+{
+    
+    
+    "name": "C3",
+    "users": ["Peter", "Super"]
+    
+}
+]

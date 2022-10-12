@@ -1,0 +1,16 @@
+[{
+    "channel" : "C1",
+    "chats": ["John : Hello", "Super: Hello John"]
+    
+    
+},
+{
+    "channel" : "C2",
+    "chats": ["John : see ya", "Super: byee"]
+    
+},
+{
+    "channel" : "C3",
+    "chats": ["John : Hey man", "Super: sup"]
+    
+}]

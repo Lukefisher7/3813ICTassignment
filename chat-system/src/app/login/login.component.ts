@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
       if(data = true){
         
         this.httpClient.get(this.url + "/api/getUsers").subscribe((userlist: any) => {
+          console.log(userlist)
           for(let i = 0; i < userlist.length; i++){
             if(userlist[i].username == this.username){
               localStorage.setItem('role', userlist[i].role);

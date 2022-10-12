@@ -1,3 +1,24 @@
 <app-sidenav></app-sidenav>
-<p>channel works!</p>
-<app-chatbox></app-chatbox>
+<header></header>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<div class="container">
+    <form>
+      <div class="form-group">
+        <label for="currentMessage"> New Message</label>
+        <input
+          type="text" [(ngModel)]="currentMessage" name="currentMessage" class="form-control"
+        />
+      </div>
+      <div class="form-group">
+        <button (click)="chat()" class="btn btn-primary">Send</button>
+      </div>
+      <div *ngFor= "let message of messages" > 
+
+        <div class="container">
+            
+            <p>{{user}}:   {{message}}</p>
+            
+        </div>
+    </div>
+    </form>
+  </div>

@@ -1,6 +1,6 @@
 <link href="/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-<div class="sidebar-opener" (click)="showsidebar = !showsidebar">
-  Click me to open/close the sidebar
+<div class="sidebar-opener" type="type" class="btn btn-primary" (click)="showsidebar = !showsidebar">
+  ← account navigation
 </div>
 
 <div class="sidebar-slider" [class.sidebar-slide-in]="showsidebar">
@@ -11,20 +11,13 @@
       X
   </div>
   <div class="sidebar-content">
-    <li class="mb-1">
-      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false" style="color:rgb(0, 110, 255)">
-        GroupList ▼
-      </button>
-      <div class="collapse" id="dashboard-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li href="#" class="link-dark d-inline-flex text-decoration-none rounded"  *ngFor="let group of groups ">{{group}}</li>
-          
-        </ul>
-      </div>
-    </li>
+    <div *ngFor="let group of groups ">{{group}}</div>
+    <form> <button type="submit" routerLink="/group" (click) = "group()" class="btn btn-lg btn-primary btn-block mt-3">Group</button></form>
+    <footer>
+    <button type="type" class="btn btn-primary" routerLink="/login" (click)="logOut()">logOut</button>
+    </footer>
   </div>
 </div>
 
 
  
-    

@@ -14,7 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AccountComponent } from './account/account.component';
-import { ChatboxComponent } from './chatbox/chatbox.component';
+
 import { GroupComponent } from './group/group.component';
 import { RolePermissionsService } from './services/role-permissions.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,7 +29,6 @@ import { UserDataService } from './services/user-data.service';
     AppComponent,
     LoginComponent,
     AccountComponent,
-    ChatboxComponent,
     GroupComponent,
     SidenavComponent,
     ChannelComponent

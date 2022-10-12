@@ -21,20 +21,19 @@ export class SidenavComponent implements OnInit {
   getGroups(){
     const user = localStorage.getItem('username');
     this.httpClient.get(this.url + "/api/getGroups").subscribe((grouplist: any) =>{
+console.log(grouplist)
       for(let i = 0; i < grouplist.length; i++){
-        for(let j = 0; j< grouplist.users.length; j++){
-          if(user == grouplist.users[j])
-          this.groups.push(grouplist[i].name);
-          console.log(this.groups);
-
-        }
-        
+               
       }
     })
   };
 
 
   ngOnInit(): void {
+    this.getGroups
   }
 
+  group(){
+    this.router.navigate(['/group']);
+  };
 }
