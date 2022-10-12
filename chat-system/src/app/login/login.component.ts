@@ -17,24 +17,7 @@ export class LoginComponent implements OnInit {
   url =  "http://localhost:3000";
 
   constructor(private router: Router, private route: ActivatedRoute, private httpClient: HttpClient) {}
-  loggedIn() {
-    if (localStorage.getItem('user_data') == null) {
-      return true;
-    }
-    console.log(localStorage.getItem('user_data'));
-    var data = localStorage.getItem('user_data') || '{}';
-    var data_JSON = JSON.parse(data);
-    return data_JSON[0].valid;
-  }
-
-  cardClasses() {
-    return {
-      hidemessage: this.authenticated,
-      showmessage: !this.authenticated,
-    };
-  }
-
-  submit() {
+   submit() {
     this.fetchedData = {username: this.username, password: this.password};
     console.log("logging in with" + ' ' + this.username);
     this.httpClient.post(this.url + '/api/auth', this.fetchedData).subscribe((data:any) => {
@@ -52,7 +35,7 @@ export class LoginComponent implements OnInit {
           }
           })
           }
-  if(data = false){
+  if(data == false){
     console.log('not correct combo');
     alert("please try another username or password");
   }

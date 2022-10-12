@@ -116,7 +116,8 @@ db.collection("chatHistory").insertMany(chatfile, function (err, res) {
       //channel operations routes//
       channelRoute.insert(app,db);
       channelRoute.delete(app,db);
-      channelRoute.find(app,db);
+      channelRoute.add(app,db);
+      channelRoute.remove(app,db);
 
       //chat history routes//
       chatHistRoute.delete(app, db);

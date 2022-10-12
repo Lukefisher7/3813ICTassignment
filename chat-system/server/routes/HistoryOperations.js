@@ -3,7 +3,7 @@ exports.delete = function (app, db) {
 
    
     /* This is the code that deletes the chat history. */
-    app.post("/api/deleteChats", (req, res) => {
+    app.post("/api/deleteChat", (req, res) => {
         
         var query = { channel: req.body.channel };
 
@@ -25,7 +25,7 @@ exports.delete = function (app, db) {
 exports.find = function (app, db) {
 
     /* This is a get request to the server. It is asking for the chats collection. */
-    app.get('/api/getChats', (req, res) => {
+    app.get('/api/getChat', (req, res) => {
       var query = {};
       db.collection('chatHistory').find(query).toArray(function (err, result) {
         if (err) throw err;
@@ -37,29 +37,17 @@ exports.find = function (app, db) {
 
 //insert chat history
 exports.insert = function (app, db) {
-
-   
-    /* This is the code that is executed when the server receives a POST request to the
-    /api/insertChats endpoint. It takes the channel and chats from the request body and inserts them
-    into the database. */
-    app.post("/api/insertChats", (req, res) => {
+    app.post("/api/insertChat", (req, res) => {
 
         var chatObj = { channel: req.body.channel, chats: req.body.chats }
-        var query = { channel: req.body.channel };
-
-        //check if history already exists
-        db.collection('chatHistory').find(query).toArray(function(err, result) {
+        var query =  {channel: req.body.channel};
+        var chat = req.body.chats
+        console.log(chatObj)
+        db.collection('chatHistory').updateOne({'channel': req.body.channel}, {$set: {chats: chat}}, function(err, result) {
             if (err) throw err;
-            if (result.length != 0) {
-
-                db.collection('chatHistory').deleteOne(query, function(err) {
-                    if (err) throw err;
-                });
+            if(result == true){
+                alert("chat updated");
             }
-        });
-
-        db.collection('chatHistory').insertOne(chatObj, function(err, result) {
-            if (err) throw err;
             res.send(true);
         });
     });

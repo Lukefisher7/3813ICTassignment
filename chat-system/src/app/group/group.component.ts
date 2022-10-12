@@ -24,14 +24,22 @@ export class GroupComponent implements OnInit {
   channels:any = [];
   url = "http://localhost:3000";
 userArr = [];
+channelArr = [];
 Currentname = localStorage.getItem('username');
 role = localStorage.getItem('role');
-
+currentGroup = localStorage.getItem('group');
+groupArr =[];
+//variables to remove channel
+removedChannelObj = {};
+deletedchannel = '';
+//variables to add channel
+newChannel = '';
+newChannelObj = {};
 roleSet(){
     
   if (this.role == 'Super Admin'){
    this.accrole = this.userRole.SuperAdmin;
-   //console.log(this.accrole);
+   console.log(this.accrole);
       return this.accrole;
    }
    if (this.role == 'Group Admin'){
@@ -51,25 +59,8 @@ roleSet(){
    }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    chatLink(){
-      this.router.navigate(['/channel']);
-    }
     addGroupUser(){
-      this.fetchedData = {name: this.group, users: this.user};
+      this.fetchedData = {name: this.currentGroup, users: this.user};
       this.httpClient.post(this.url + "/api/addGroupUser", this.fetchedData).subscribe((result: any) => {
         if(result == true){
           alert("user added to group");
@@ -81,7 +72,7 @@ roleSet(){
       })
     };
     removeUser(){
-      this.fetchedUser = {name: this.removedgroup, users: this.removedUser};
+      this.fetchedUser = {name: this.currentGroup, users: this.removedUser};
     this.httpClient.post(this.url + "/api/removeGroupUser", this.fetchedUser).subscribe((result: any) => {
       if(result == true){
         alert("user removed from group");
@@ -92,29 +83,56 @@ roleSet(){
     
     })};
     channelList(){
-      this.httpClient.get(this.url + "/api/getChannels").subscribe((result: any) => {
-        for(let i = 0; i< result.length; i++) {
-        if(result[i].name == this.group){
-          console.log(result[i]); 
-          this.channels.push(result[i])}
+      this.httpClient.get(this.url + "/api/getGroups").subscribe((result: any) => {
+        if (result.length !== 0) {
+          for(let i =0; i < result.length; i++){
+            if(result[i].name == this.currentGroup){
+              this.channelArr = result[i].channels
+              console.log(this.channelArr)
+            }
+
+
+  
+          }
+                 
         }})
     };
-    addChannel(){};
+    addChannel(){
+      this.newChannelObj = {name: this.newChannel, users: this.Currentname, group: this.currentGroup}
+    this.httpClient.post(this.url + "/api/addChannel", this.newChannelObj).subscribe(res => alert("channel added"))
+    };
     
     userList(){
-      if(this.Currentname != ''){
-      this.httpClient.get(this.url + "/api/getGroups").subscribe((grouplist: any) => {
-        console.log(grouplist);
-        //for(let i = 0; i < userlist.length; i++){
-          //this.userArr.push(userlist[i])
-        //}
-        })
-      }
+      const user = localStorage.getItem('username');
+      this.httpClient.get(this.url + "/api/getGroups").subscribe((grouplist: any) =>{
+        if (grouplist.length !== 0) {
+          for(let i =0; i < grouplist.length; i++){
+            if(grouplist[i].name == this.currentGroup){
+              this.userArr = grouplist[i].users
+              console.log(this.userArr)
+            }
+            
+            //console.log(this.groups);
+  
+          }
+                 
+        }
+      })
     };
-    deleteGroup(){};
+  
+deleteChannel(){
+  this.removedChannelObj = {name: this.deletedchannel}
+  this.httpClient.post(this.url + '/api/deleteChannel', this.removedChannelObj).subscribe(res => alert("channel deleted"))
+};
+channelNav(name:any){
+  this.router.navigate(['/channel']);
+  localStorage.setItem('channel', name);
+};
 
 
   ngOnInit(): void {
+    this.channelList();
+    this.userList();
   }
 
 }

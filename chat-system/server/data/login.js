@@ -8,13 +8,13 @@ module.exports = function(app, db){
         userObj = {username: Enteredusername, password: Enteredpassword};
         console.log(userObj)
         const collection = db.collection("users");
-
+        
         //count the num of username/password combo in database (should be 1 if valid, 0 if invalid)
         var count = await collection.countDocuments(userObj);
         console.log(count);
         if(count > 0){
             res.send(true);
-            console.log();
+            console.log(count);
         }
         if(count = 0){
             res.send(false);

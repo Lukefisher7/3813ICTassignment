@@ -42,3 +42,8 @@ footer{
     border-color: #9ecaed;
     box-shadow: 0 0 1em #9ecaed;
   }
+
+  .h5 {
+    vertical-align: middle;
+    width: 400px;
+  }

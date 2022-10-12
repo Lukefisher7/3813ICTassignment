@@ -14,7 +14,6 @@ export class SocketioService {
   //setup
   initSocket() {
     this.socket = io(SERVER_URL);
-    //this.socket.emit('room', room, username)
     return () => {
       this.socket.disconnect();
     };
@@ -52,4 +51,7 @@ export class SocketioService {
       });
     });
   }
+
+
+  
 }

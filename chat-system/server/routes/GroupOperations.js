@@ -51,7 +51,7 @@ exports.delete = function(app,db){
 exports.list = function(app,db){
     app.get('/api/getGroups', (req, res) => {
     var query = {};
-      db.collection('groups').find(query).toArray(function (err, result) {
+      db.collection('groups').find(query).toArray((err, result)=>{
         if (err) throw err;
         res.send(result);
       });

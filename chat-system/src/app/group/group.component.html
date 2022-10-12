@@ -1,32 +1,10 @@
 <app-sidenav></app-sidenav>
-<header class="page-header" position = "text-centre" >
-  <h1>Group Page</h1></header>
+<div class="glowing-border" position = "text-centre" >
+  <h1 position = 'text-centre'>Group Page: {{currentGroup}}</h1></div>
 
-
-<div style = "position: relative; left: 1250px;">
-  <div class ="row">
-  <div class="col-4">
-    <div class="list-group" id="list-tab" role="tablist">
-      <a class="list-group-item list-group-item-action active disabled" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Channel List</a>
-      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">C1</a>
-      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">C2</a>
-      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">C3</a>
-    </div>
-  </div>
-  <div class="col-8">
-    <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list"></div>
-      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
-      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
-      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
-    </div>
-  </div>
-</div>
-</div>
-
-<div *ngIf="roleSet().deleteUser == true">
-<div style = "margin-top: 10px; height: auto;" class="formClass glowing-border">
-  <h2 class="h3 mb-3 fw-normal">Add User to group</h2>
+<div *ngIf = "role == 'Super Admin' || 'Group Admin'">
+  <div style = "margin-top: 10px; height: auto;" class="formClass glowing-border">
+  <h2 class="h3 mb-3 fw-normal">Add User to {{currentGroup}}</h2>
   <body class = "text-centre">
   <main class = "form-signin w-100 m-auto">
     <form method="POST" class="form-login pt-5">
@@ -34,11 +12,6 @@
       <label for="user">User to add</label>
       <input type="text" name="user" id="user" [(ngModel)]="user" class="form-control">
   </div>
-  <div class="form-group">
-      <label for="group">group</label>
-      <input type="group" class="form-control" id="group" name="group" [(ngModel)]="group">
-  </div>
-  <!-- Login Button -->
   <button type="submit" (click)="addGroupUser()" class="btn btn-lg btn-primary btn-block mt-3">Add user to group</button>
   </form>
   </main>
@@ -47,7 +20,7 @@
 
 
   <div style = "margin-top: 10px; height: auto;" class="formClass glowing-border">
-    <h2 class="h3 mb-3 fw-normal">Remove User from group</h2>
+    <h2 class="h3 mb-3 fw-normal">Remove User from {{currentGroup}}</h2>
     <body class = "text-centre">
     <main class = "form-signin w-100 m-auto">
       <form method="POST" class="form-login pt-5">
@@ -55,17 +28,55 @@
         <label for="removedUser">User to remove</label>
         <input type="text" name="removedUser" id="removedUser" [(ngModel)]="removedUser" class="form-control">
     </div>
-    <div class="form-group">
-        <label for="removedgroup">group</label>
-        <input type="removedgroup" class="form-control" id="removedgroup" name="removedgroup" [(ngModel)]="removedgroup">
-    </div>
-    <!-- Login Button -->
     <button type="submit" (click)="removeUser()" class="btn btn-lg btn-primary btn-block mt-3">remove user from group</button>
     </form>
     </main>
     </body>
 </div>
-
+<div class="form-login pt-5 glowing-border margin-top: 10px">
+<label>Channel List</label>
+<li><a class="dropdown-item" routerLink="/channel" href="#" (click)="channelNav(channel)" *ngFor="let channel of channelArr">{{channel}}</a></li>
 </div>
+</div>
+<div class="form-login pt-5 glowing-border margin-top: 10px">
+  <label>User List</label>
+  <li><p class="dropdown-item" routerLink="/channel" href="#" *ngFor="let users of userArr">{{users}}</p></li>
+  </div>
 
+  <div *ngIf="roleSet().createChannel == true">
   
+    <div style = "margin-top: 10px;" class="formClass glowing-border">
+      <h3 class="h3 mb-3 fw-normal">Delete Channel</h3>
+      <body class = "text-centre">
+      <main class = "form-signin w-100 m-auto">
+        <form method="POST" class="form-login pt-5">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="deletedchannel">Channel Name</label>
+    <input type="text" [(ngModel)]="deletedchannel" name="deletedchannel" placeholder="Channel name" class="form-control" autocomplete="off"/> 
+      </div>
+        </div>
+  <button type="button" class="btn btn-lg btn-primary btn-block mt-3" (click) = "deleteChannel()">submit</button> 
+  </form>
+  </main>
+      </body>
+    </div>
+
+
+    <div style = "margin-top: 10px;" class="formClass glowing-border">
+      <h3 class="h3 mb-3 fw-normal">Add Channel</h3>
+      <body class = "text-centre">
+      <main class = "form-signin w-100 m-auto">
+        <form method="POST" class="form-login pt-5">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="newchannel">Channel Name</label>
+    <input type="text" [(ngModel)]="newChannel" name="newChannel" placeholder="Channel name" class="form-control" autocomplete="off"/> 
+      </div>
+        </div>
+  <button type="button" class="btn btn-lg btn-primary btn-block mt-3" (click) = "addChannel()">submit</button> 
+  </form>
+  </main>
+      </body>
+    </div>
+  </div>

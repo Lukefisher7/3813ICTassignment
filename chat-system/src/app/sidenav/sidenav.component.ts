@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class SidenavComponent implements OnInit {
   url =  "http://localhost:3000";
   groups: any = [];
+  selectedGroup = ''
   constructor(private router: Router, private httpClient: HttpClient) { }
   logOut(){
     localStorage.clear();
@@ -21,19 +22,33 @@ export class SidenavComponent implements OnInit {
   getGroups(){
     const user = localStorage.getItem('username');
     this.httpClient.get(this.url + "/api/getGroups").subscribe((grouplist: any) =>{
-console.log(grouplist)
-      for(let i = 0; i < grouplist.length; i++){
+      console.log(typeof(grouplist))
+      if (grouplist.length !== 0) {
+        for(let i =0; i < grouplist.length; i++){
+          var userdata = grouplist.users;
+          console.log(userdata);
+             this.groups.push(grouplist[i].name);
+          
+          
+          
+          //console.log(this.groups);
+
+        }
                
       }
     })
   };
 
+ 
+
 
   ngOnInit(): void {
-    this.getGroups
-  }
+    this.getGroups();
+      }
 
-  group(){
+  groupNav(name:any){
     this.router.navigate(['/group']);
+    localStorage.setItem('group', name);
+    
   };
 }

@@ -11,8 +11,8 @@
       X
   </div>
   <div class="sidebar-content">
-    <div *ngFor="let group of groups ">{{group}}</div>
-    <form> <button type="submit" routerLink="/group" (click) = "group()" class="btn btn-lg btn-primary btn-block mt-3">Group</button></form>
+    <button routerLink="/account" class="btn btn-primary">Account</button>
+    <a routerLink="/group" (click)="groupNav(group)" *ngFor="let group of groups">{{group}}</a>
     <footer>
     <button type="type" class="btn btn-primary" routerLink="/login" (click)="logOut()">logOut</button>
     </footer>

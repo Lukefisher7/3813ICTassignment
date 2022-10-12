@@ -18,7 +18,7 @@
     border-color: #9ecaed;
     box-shadow: 0 0 1em #9ecaed;
   }
-  .h1{  
+  h1{  
     text-align: center;  
     color: rgb(0, 0, 0);  
     padding: 20px;  
@@ -26,4 +26,12 @@
 
 header{
   background-color: rgb(119, 173, 255);
+}
+
+.right {
+  position: absolute;
+  right: 0px;
+  width: 300px;
+  border: 3px solid #73AD21;
+  padding: 10px;
 }
